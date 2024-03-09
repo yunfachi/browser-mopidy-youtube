@@ -1,20 +1,14 @@
-async function getCurrentTab() {
+async function getCurrentTab()
+{
     let queryOptions = {active: true, currentWindow: true};
     let [tab] = await chrome.tabs.query(queryOptions);
     return tab;
 } 
 
-async function getUrl() {
-    function setCurrentChoice(result) {
-        return result.url || "http://127.0.0.1:6680/youtube/";
-    }
-
-    function onError(error) {
-        console.error(`Error: ${error}`);
-    }
-
-    const getting = chrome.storage.sync.get("url");
-    getting.then(setCurrentChoice, onError);
+async function getUrl()
+{
+    const result = await chrome.storage.sync.get("url");
+    return result.url || "http://127.0.0.1:6680/youtube/";
 }
 
 async function main()
