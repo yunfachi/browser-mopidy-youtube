@@ -2,11 +2,11 @@
     "manifest_version": 3,
     "name": "Browser Mopidy-YouTube",
     "description": "Browser extension for adding active YouTube video to the mopidy queue ",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "author": "yunfachi",
     "homepage_url": "https://github.com/yunfachi/browser-mopidy-youtube",
     
-    "permissions": ["activeTab", "storage"],
+    "permissions": ["activeTab", "storage", "contextMenus"],
 
     "options_ui": {
         "page": "options.html"
@@ -15,6 +15,11 @@
         "default_title": "Mopidy YouTube",
         "default_popup": "popup.html"
     },
+    "background": {
+        "scripts": ["background.js"],
+        "service_worker": "background.js"
+    },
+     
 
     "browser_specific_settings": {
         "gecko": {
