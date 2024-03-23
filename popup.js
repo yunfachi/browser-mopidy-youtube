@@ -4,17 +4,9 @@ async function getCurrentTab() {
     return tab;
 } 
 
-async function getUrl() {
-    const result = await chrome.storage.sync.get("url");
-    return result.url || "http://127.0.0.1:6680/youtube/";
-}
-
 async function main() {
-    const url = await getUrl()
     const tab = await getCurrentTab();
-
-    console.debug(`url: ${url}?url=${encodeURI(tab.url)}`);
-    console.debug(await fetch(`${url}?url=${encodeURI(tab.url)}`, {mode: "no-cors"}));
+    await chrome.runtime.sendMessage({key: "add-to-mopidy-queue", video_url: tab.url});
 
     window.close();
 }
